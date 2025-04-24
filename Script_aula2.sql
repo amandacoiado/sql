@@ -1,15 +1,15 @@
 /*
- SQL - Aula 01
+ SQL - Aula 02
  24/04/2025
  */
 
 
 /* --------------------------------------------------------
- * 2ª parte - Agregações - Perguntando para os dados 
+ * 2Âª parte - AgregaÃ§Ãµes - Perguntando para os dados 
  * --------------------------------------------------------*/
 
 
-/* 1) Quantas agências existem no Banco Ramos? */
+/* 1) Quantas agÃªncias existem no Banco Ramos? */
 
 
 
@@ -36,13 +36,13 @@
 
 
 
-/* 4) Exite algum número de conta repetido? */
+/* 4) Exite algum nÃºmero de conta repetido? */
 
 -- Resposta: 
 
 
 
-/* 5) Quantas agências possuem contas ativas?*/
+/* 5) Quantas agÃªncias possuem contas ativas?*/
 
 
 
@@ -76,7 +76,7 @@
 
 -- Resposta: 
 
-/* 9) Quantos registros de transações há? */
+/* 9) Quantos registros de transaÃ§Ãµes hÃ¡? */
 
 
 
@@ -86,7 +86,7 @@
 
 
 
-/* 10) Quantas registros de transações há no ano de 2024? */
+/* 10) Quantas registros de transaÃ§Ãµes hÃ¡ no ano de 2024? */
 
 -- usando a data completa
 
@@ -100,7 +100,7 @@
 
 
 
--- usando a função YEAR()
+-- usando a funÃ§Ã£o YEAR()
 
 
 
@@ -113,11 +113,11 @@
 
 
 
-/* 11) Quantas transações ocorreram em janeiro de 2024? */
+/* 11) Quantas transaÃ§Ãµes ocorreram em janeiro de 2024? */
 -- usando year() e month()
 
 
--- usando a concatenação de ano e mês
+-- usando a concatenaÃ§Ã£o de ano e mÃªs
 
 
 
@@ -128,7 +128,7 @@
 
 
 
-/* 12) Qual é o valor mínimo, em reais, de transação registrado? */
+/* 12) Qual Ã© o valor mÃ­nimo, em reais, de transaÃ§Ã£o registrado? */
 
 
 
@@ -137,7 +137,7 @@
 
 
 
-/* 13) Qual é o valor máximo, em reais, de transação registrado? */
+/* 13) Qual Ã© o valor mÃ¡ximo, em reais, de transaÃ§Ã£o registrado? */
 
 
 
@@ -146,7 +146,7 @@
 
 
 
-/* 14) Qual o código das transações do tipo Pix? */
+/* 14) Qual o cÃ³digo das transaÃ§Ãµes do tipo Pix? */
 
 
 
@@ -155,19 +155,19 @@
 
 
 
-/* 15) Qual o valor médio, em reais, das transações do tipo Pix? */
+/* 15) Qual o valor mÃ©dio, em reais, das transaÃ§Ãµes do tipo Pix? */
 
 
 -- Resposta: R$ 
 
 
 
-/* 16) Qual o valor médio, em reais, das transações do tipo depósito? */
--- Identificar o(s) código(s) dos depósitos
+/* 16) Qual o valor mÃ©dio, em reais, das transaÃ§Ãµes do tipo depÃ³sito? */
+-- Identificar o(s) cÃ³digo(s) dos depÃ³sitos
 
 
 
--- calcular a média
+-- calcular a mÃ©dia
 
 
 
@@ -176,8 +176,8 @@
 
 
 
-/* 17) Qual o total de tarifas que o Banco Ramos já cobrou? */
--- Identificar o código das tarifas
+/* 17) Qual o total de tarifas que o Banco Ramos jÃ¡ cobrou? */
+-- Identificar o cÃ³digo das tarifas
 
 
 -- calcular o total
