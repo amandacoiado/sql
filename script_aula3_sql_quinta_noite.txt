@@ -1,0 +1,266 @@
+/*
+ SQL - Aula 02
+ 24/04/2025
+ */
+
+
+/* --------------------------------------------------------
+ * 2ª parte - Agregações - Perguntando para os dados 
+ * --------------------------------------------------------*/
+
+
+/* 1) Quantas agências existem no Banco Ramos? */
+SELECT COUNT(*) AS qtde_agencias
+FROM Agencias;
+-- Resultado: 60
+
+/* 2) Quantas contas existem no Banco Ramos? */
+SELECT COUNT(*) AS qtde_contas
+FROM [Contas] ;
+-- Resultado: 184
+
+/* 3) Quantas contas ativas existem no Banco Ramos? */
+SELECT *
+FROM [Contas]
+WHERE conta_ativa = TRUE;
+
+-- TRUE
+-- FALSE
+
+-- Resposta: 169
+
+
+
+/* 4) Exite algum número de conta repetido? */
+SELECT COUNT(DISTINCT c.[numero_conta]) AS qtde_contas_distintas
+FROM [Contas] c ;
+
+-- Resposta: sim, tem uma conta.
+
+
+
+/* 5) Quantas agências possuem contas ativas?*/
+SELECT COUNT(DISTINCT [numero_agencia]) AS qtde_agencias_com_contas_ativas
+FROM [Contas] c
+WHERE [conta_ativa] = true;
+
+-- Resposta: 31
+
+
+
+/* 6) Quantos clientes possuem cadastro no Banco Ramos? */
+SELECT COUNT(*) AS qtde_clientes
+FROM [Clientes] c ;
+
+-- Resposta: 144
+
+
+
+/* 7) Quantos clientes possuem contas ativas? */
+SELECT count(distinct [cliente_id]) AS qtde_clientes_com_contas_ativas
+FROM [Contas] c 
+WHERE c.[conta_ativa] = true;
+
+-- Resposta: 132
+
+/* 8) Quantos clientes possuem contas inativas? */
+SELECT count(distinct [cliente_id]) AS qtde_clientes_com_contas_inativas
+FROM [Contas] c 
+WHERE c.[conta_ativa] = false;
+
+-- Resposta: 15
+
+/* 9) Quantos registros de transações há? */
+SELECT count([transacao_id]) AS qtde_transacoes
+FROM [Transacoes] t ;
+
+
+-- Resposta: 19.884
+
+
+
+/* 10) Quantas registros de transações há no ano de 2024? */
+SELECT *
+FROM [Transacoes] t ;
+
+-- usando a data completa
+
+SELECT COUNT(*)
+FROM [Transacoes] t 
+WHERE [data_hora] >= '2024-01-01' AND [data_hora] < '2025-01-01';
+
+SELECT COUNT(*)
+FROM [Transacoes] t 
+WHERE [data_hora] >= '2024-01-01' AND [data_hora] <= '2024-12-31 23:59:59'
+
+-- usando BETWEEN
+SELECT COUNT(*)
+FROM [Transacoes] t 
+WHERE [data_hora] BETWEEN '2024-01-01 00:00:00' AND '2024-12-31 23:59:59';
+
+
+-- usando a função YEAR()
+SELECT COUNT(*) AS qtde_transacoes_2024
+FROM [Transacoes] t 
+WHERE YEAR(data_hora) = 2024;
+
+SELECT *
+FROM [Transacoes] t ;
+
+
+-- Contagem
+
+
+
+-- Resposta: 19.788
+
+
+
+/* 11) Quantas transações ocorreram em janeiro de 2024? */
+-- usando year() e month()
+SELECT COUNT(*) AS qtde_transacoes_012024
+FROM [Transacoes] t 
+WHERE YEAR(data_hora) = 2024 AND MONTH(data_hora) = 1;
+
+-- usando a concatenação de ano e mês
+
+SELECT *
+FROM [Transacoes] t ;
+
+SELECT COUNT(*) AS qtde_transacoes_012024
+FROM [Transacoes] t 
+WHERE TO_CHAR(data_hora, 'yyyy-MM') = '2024-01';
+
+-- TO_CHAR(o_que_transformar, formato)
+
+SELECT [transacao_id] AS codigo, [data_hora] AS hora_transacao, TO_CHAR(data_hora, 'yyyy-MM') AS ano_mes
+FROM [Transacoes] AS t 
+WHERE TO_CHAR(data_hora, 'yyyy-MM') = '2024-01';
+
+
+-- Resposta: 1.937
+
+
+
+/* 12) Qual é o valor mínimo, em reais, de transação registrado? */
+SELECT MIN([valor]) AS valor_minimo
+FROM [Transacoes] t ;
+
+-- min(coluna)
+
+-- Resposta: R$ 0,02
+
+
+
+/* 13) Qual é o valor máximo, em reais, de transação registrado? */
+SELECT MAX([valor]) AS valor_minimo
+FROM [Transacoes] t ;
+
+-- Resposta: R$ 19.200.000,00 
+
+
+
+/* 14) Qual o código das transações do tipo Pix? */
+SELECT * 
+FROM [TiposTransacao] tt ;
+
+
+SELECT [tipo_transacao_id] AS codigo_pix
+FROM [TiposTransacao] tt 
+WHERE lower(nome_tipo_transacao) = 'pix';
+
+-- lower(coluna)
+
+SELECT [tipo_transacao_id] AS codigo_pix
+FROM [TiposTransacao] tt 
+WHERE upper(nome_tipo_transacao) = 'PIX';
+
+-- upper(coluna)
+
+SELECT [tipo_transacao_id] AS codigo_pix
+FROM [TiposTransacao] tt 
+WHERE upper(nome_tipo_transacao) LIKE '%PIX%';
+
+-- Resposta: 11
+
+
+
+/* 15) Qual o valor médio, em reais, das transações do tipo Pix? */
+SELECT round(AVG([valor]), 2) AS VALOR_MEDIO_PIX
+FROM [Transacoes] t 
+WHERE [tipo_transacao_id] = 11;
+
+-- ROUND(coluna, qtde_casas_decimais)
+
+-- Resposta: R$ 1.249,45
+
+
+
+/* 16) Qual o valor médio, em reais, das transações do tipo depósito? */
+-- Identificar o(s) código(s) dos depósitos
+SELECT *
+FROM [TiposTransacao] tt ;
+
+SELECT [tipo_transacao_id] 
+FROM [TiposTransacao] tt
+WHERE NOME_TIPO_TRANSACAO LIKE '%DEPÓSITO%'
+
+
+-- calcular a média
+SELECT round(AVG([valor]), 2) AS VALOR_MEDIO_PIX
+FROM [Transacoes] t 
+WHERE [tipo_transacao_id] = 1 OR [tipo_transacao_id] = 2;
+
+-- PORQUE SÃO VALORES SEGUIDOS, PODEMOS USAR BETWEEN
+SELECT round(AVG([valor]), 2) AS VALOR_MEDIO_PIX
+FROM [Transacoes] t 
+WHERE [tipo_transacao_id] BETWEEN 1 AND 2;
+
+-- PORQUE SÃO VALORES SEGUIDOS, PODEMOS USAR >=
+SELECT round(AVG([valor]), 2) AS VALOR_MEDIO_PIX
+FROM [Transacoes] t 
+WHERE [tipo_transacao_id] >=1 AND [tipo_transacao_id] <=2;
+
+-- SE NÃO SÃO VALORES SEGUIDOS, USAR O IN, QUE FUNCIONA COMO OU
+SELECT round(AVG([valor]), 2) AS VALOR_MEDIO_PIX
+FROM [Transacoes] t 
+WHERE [tipo_transacao_id] IN (1, 2);
+
+-- Resposta: R$ 167.742,19
+
+
+
+/* 17) Qual o total de tarifas que o Banco Ramos já cobrou? */
+-- Identificar o código das tarifas
+SELECT *
+FROM [TiposTransacao] tt ;
+
+-- CÓDIGO 8
+
+-- calcular o total
+SELECT SUM(valor) AS soma_tarifas
+FROM [Transacoes] t
+WHERE [tipo_transacao_id] = 8;
+
+
+-- Resposta: R$ 6.436,00
+
+
+/* --------------------------------------------------------
+ * 4ª parte - Junção de Tabelas (JOIN) 
+ * --------------------------------------------------------*/
+
+
+/* 1) Liste as cidades com seus respectivos estados */
+SELECT * FROM cidades;
+
+SELECT * FROM estados;
+
+SELECT
+	T1.[nome_cidade] AS cidade,
+	T2.[uf] 
+FROM [Cidades] T1
+	LEFT JOIN [Estados] T2	
+		ON T1.[estado_id] = T2.[estado_id];
+
+
