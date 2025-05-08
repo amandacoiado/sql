@@ -1,0 +1,64 @@
+/* --------------------------------------------------------
+ * 3ª parte - Agrupamentos (GROUP BY) - análises agregadas 
+ * --------------------------------------------------------*/
+
+
+/* 1) Qual a agência com maior número de contas ativas? */
+
+
+
+
+
+
+-- Resposta: 
+
+
+
+/* 2) Identifique quais são as contas com número repetido */
+-- identificar o número repetido
+
+
+
+
+
+-- identificar as agências das contas
+
+
+
+
+-- Resposta: 
+
+
+
+/* 3) Qual o dia do ano maior quantidade de transações em 2024? */
+
+
+
+
+
+-- Resposta:
+
+/* 4) Qual o mês com maior quantidade de transações em 2024? */
+-- usando year() e month()
+
+
+
+-- usar o MONTH() para identificar o mês de cada linha
+
+
+
+
+-- usar o GROUP BY para contar cada grupamento
+
+
+
+
+-- Resposta: 
+
+/* 5) Qual o dia do mês com maior quantidade de movimentações em 2024? */
+
+
+
+
+
+-- Resposta: 
