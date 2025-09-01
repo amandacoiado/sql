@@ -1,20 +1,20 @@
 /*
  SQL - Aula 01
- 17/04/2025
+01/09/2025
  */
 
 
 
 /* --------------------------------------------------------
- * 1ª parte - Visualizar tabelas
+ * 1Âª parte - Visualizar tabelas
  * --------------------------------------------------------*/
 
-/* 1) Visualizar todo o conteúdo da tabela Cidades */
+/* 1) Visualizar todo o conteÃºdo da tabela Cidades */
 
 
 
 
-/* 2) Visualizar todo o conteúdo da tabela Estados */
+/* 2) Visualizar todo o conteÃºdo da tabela Estados */
 
 
 
@@ -36,4 +36,5 @@
 
 
 /* 6) Ordenar a tabela Clientes pelo Nome de forma decrescente */
+
 
